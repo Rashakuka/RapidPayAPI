@@ -59,4 +59,3 @@ Once authenticated and authorized, you can interact with the following endpoints
   - Description: Registers new payments to an existing credit card.
   - Note: Payment fees are calculated within this module and used when executing the pay endpoint.
 
-For detailed information about request and response formats, please refer to the SWAGGER documentation provided within the project. Happy testing!
