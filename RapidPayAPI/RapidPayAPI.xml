@@ -4,27 +4,6 @@
         <name>RapidPayAPI</name>
     </assembly>
     <members>
-        <member name="T:RapidPayAPI.EncryptionLibrary.AesEncryptor">
-            <summary>
-            Provides AES encryption and decryption functionality.
-            </summary>
-        </member>
-        <member name="M:RapidPayAPI.EncryptionLibrary.AesEncryptor.EncryptAES(System.String,System.String)">
-            <summary>
-            Encrypts a plain text using AES encryption with the provided key.
-            </summary>
-            <param name="plainText">The plain text to be encrypted.</param>
-            <param name="key">The encryption key.</param>
-            <returns>The encrypted data with IV included.</returns>
-        </member>
-        <member name="M:RapidPayAPI.EncryptionLibrary.AesEncryptor.DecryptAES(System.Byte[],System.String)">
-            <summary>
-            Decrypts combined data (IV + ciphertext) using AES decryption with the provided key.
-            </summary>
-            <param name="combinedData">The combined data (IV + ciphertext) to be decrypted.</param>
-            <param name="key">The decryption key.</param>
-            <returns>The decrypted plain text.</returns>
-        </member>
         <member name="T:RapidPayAPI.Migrations.StartMigrations">
             <inheritdoc />
         </member>
