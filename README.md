@@ -30,7 +30,7 @@ This API uses token-based authentication. Start by authenticating using the logi
   - Credentials:
     - UserName: `user`
     - Password: `userpassword`
-  - Permissions: User role can access `get-card-balance` and `pay` endpoints from the Card Management module.
+  - Permissions: User role can access `card` and `pay` endpoints from the Card module.
 
 ### Authorization
 
