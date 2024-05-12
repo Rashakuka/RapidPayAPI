@@ -8,6 +8,10 @@ Before running the API, ensure that the database connection is properly set up:
 
 - Verify the database `ConnectionString` in the `appsettings.Development.json` file. The project is configured to automatically create the database from scratch when you run it.
 
+## Create database
+
+ - dotnet ef database update
+
 ## Authentication
 
 This API uses token-based authentication. Start by authenticating using the login endpoint from the Authentication module to obtain a token.
@@ -26,7 +30,7 @@ This API uses token-based authentication. Start by authenticating using the logi
   - Credentials:
     - UserName: `user`
     - Password: `userpassword`
-  - Permissions: User role can access `get-card-balance` and `pay` endpoints from the Card Management module.
+  - Permissions: User role can access `card` and `pay` endpoints from the Card module.
 
 ### Authorization
 
@@ -45,14 +49,13 @@ Unauthorized requests to the Card Management module will return an error code `4
 
 Once authenticated and authorized, you can interact with the following endpoints in the Card Management module:
 
-- `create-card`
+- `card/create`
   - Description: Allows you to create new credit cards.
 
-- `get-card-balance`
+- `card/balance`
   - Description: Retrieves the current balance of an existing credit card.
 
-- `pay`
+- `card/pay`
   - Description: Registers new payments to an existing credit card.
   - Note: Payment fees are calculated within this module and used when executing the pay endpoint.
 
-For detailed information about request and response formats, please refer to the SWAGGER documentation provided within the project. Happy testing!
