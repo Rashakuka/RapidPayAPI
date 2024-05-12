@@ -7,6 +7,7 @@ using RapidPayAPI.Services.Users.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RapidPayAPI.Controllers
 {
@@ -16,13 +17,13 @@ namespace RapidPayAPI.Controllers
     {
         private readonly IUsersService _usersService;
         private readonly IConfiguration _configuration;
-        private readonly AesEncryptor _encryptor;
+        private readonly HashGeneration _hashGenerator;
 
-        public AuthenticationController(IUsersService usersService, IConfiguration configuration, AesEncryptor encryptor)
+        public AuthenticationController(IUsersService usersService, IConfiguration configuration, HashGeneration hashGenerator)
         {
             _usersService = usersService;
             _configuration = configuration;
-            _encryptor = encryptor;
+            _hashGenerator = hashGenerator;
         }
 
         [AllowAnonymous]
@@ -41,10 +42,9 @@ namespace RapidPayAPI.Controllers
             return Ok(new { Token = token });
         }
 
-        private bool ValidatePassword(string password, string storedEncryptedPassword)
+        private bool ValidatePassword(string password, string storedHashedPassword)
         {
-            var decryptedPassword = _encryptor.DecryptAES(Convert.FromBase64String(storedEncryptedPassword), _configuration["AppSettings:EncryptionKey"]);
-            return password == decryptedPassword;
+            return BCrypt.Net.BCrypt.Verify(password, storedHashedPassword);
         }
 
         private string GenerateJwtToken(UserResult userResult)
@@ -63,7 +63,7 @@ namespace RapidPayAPI.Controllers
                 issuer: _configuration["JwtSettings:Issuer"],
                 audience: _configuration["JwtSettings:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(1),
+                expires: DateTime.UtcNow.AddHours(Convert.ToInt32(_configuration["JwtSettings:AddHourToExpireToken"])), 
                 signingCredentials: credentials
             );
 

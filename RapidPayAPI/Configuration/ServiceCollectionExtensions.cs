@@ -24,8 +24,9 @@ namespace RapidPayAPI.Configuration
     {
         public static IServiceCollection ConfigureApiServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient<AesEncryptor>();
-            
+            services.AddTransient<HashGeneration>();
+            services.AddScoped<DataSeeder>();
+
             var jwtSettings = configuration.GetSection("JwtSettings");
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

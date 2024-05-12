@@ -11,7 +11,7 @@
             Timer.Start();
         }
 
-        public decimal Fee { get; private set; }
+        public virtual decimal Fee { get; private set; }
 
         private System.Timers.Timer Timer { get; set; }
 
