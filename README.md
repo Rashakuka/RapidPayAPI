@@ -6,11 +6,18 @@ Welcome to our API! This guide will walk you through the steps needed to effecti
 
 Before running the API, ensure that the database connection is properly set up:
 
-- Verify the database `ConnectionString` in the `appsettings.Development.json` file. The project is configured to automatically create the database from scratch when you run it.
+- Verify the database `ConnectionString` in the `appsettings.Development.json` file.
 
-## Create database
+## Steps to run
 
+ - Verify the database `ConnectionString` in the `appsettings.Development.json` file. Set up your conection string.
+**run:**
  - dotnet ef database update
+ - dotnet run -- seed
+ - run the project
+ - use 
+    - UserName: `admin`
+    - Password: `adminpassword`
 
 ## Authentication
 
